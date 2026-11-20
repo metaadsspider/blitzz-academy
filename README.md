@@ -112,14 +112,24 @@ replaces step 2 and 3 with a hosted checkout, and the enrollment insert in
 
 ---
 
-## 4. Changing the catalogue
+## 4. The owner panel
 
-Edit `lib/courses-data.js` — title, price, lessons, accents. Seeding uses
-`ON CONFLICT (slug) DO NOTHING`, so **changes only apply to courses that do not
-exist yet**. After the site has run once, either:
+Sign in at `/admin` with `ADMIN_PASSWORD`. Two tabs:
 
-- edit the row in the database (`UPDATE courses SET price_inr = 1999 WHERE slug = 'python-from-zero'`), or
-- delete the row and let the seed re-insert it on the next request.
+- **Orders** — every order with buyer name, email, phone, amount, UTR and
+  status, plus **Revoke**, which marks the order `revoked` and removes the
+  buyer's access in one click.
+- **Courses** — the full course manager. Create a course, change a price,
+  edit or reorder lessons, delete a course. Changes are live immediately; no
+  deploy needed.
+
+Deleting is refused while a course has orders against it, so your sales
+records can't be wiped by accident. Edit the price or details instead.
+
+`lib/courses-data.js` is now only the **initial seed**, used when the courses
+table is completely empty (a brand-new database). Once the site has run once,
+manage everything through `/admin/courses` — editing that file will not change
+courses that already exist.
 
 Brand name, tagline and support email live in `lib/site.js`.
 
@@ -137,10 +147,14 @@ app/
   learn/[slug]/page.js        lesson reader (gated)
   checkout/[slug]/page.js     checkout screen
   admin/page.js               orders + revoke
+  admin/courses/page.js       course list
+  admin/courses/[id]/page.js  create / edit a course
   api/auth/{register,login,logout}/route.js
   api/checkout/route.js       creates order + QR
   api/checkout/confirm/route.js  saves UTR, grants access
   api/admin/{login,revoke}/route.js
+  api/admin/courses/route.js  create a course
+  api/admin/courses/[id]/route.js  update / delete a course
 components/                   header, footer, cards, forms, checkout flow
 lib/
   db.js                       pool, schema creation, seed
