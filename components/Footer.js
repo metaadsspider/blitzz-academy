@@ -41,6 +41,19 @@ export default function Footer() {
               <Link href="/#faq">Payment help</Link>
             </li>
           </ul>
+
+          <h4 style={{ marginTop: 22 }}>Legal</h4>
+          <ul>
+            <li>
+              <Link href="/terms">Terms &amp; Refunds</Link>
+            </li>
+            <li>
+              <Link href="/privacy">Privacy Policy</Link>
+            </li>
+            <li>
+              <Link href="/disclaimer">Disclaimer</Link>
+            </li>
+          </ul>
         </div>
 
         <div>

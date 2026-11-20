@@ -233,9 +233,11 @@ export default async function HomePage() {
           <details>
             <summary>Can I get a refund?</summary>
             <p>
-              Write to {SITE.supportEmail} within 7 days of purchase with your
-              order reference and we will sort it out. Refund requests are
-              handled over email so there is a written record for both sides.
+              Course purchases are final. Access is granted the moment you
+              confirm your payment, and digital content cannot be returned.
+              The full no-refund policy, and what to do if you have a genuine
+              problem with an order, is in our{" "}
+              <Link href="/terms">Terms of Service</Link>.
             </p>
           </details>
 

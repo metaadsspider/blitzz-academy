@@ -121,7 +121,10 @@ export default function RegisterForm({ next }) {
         </form>
 
         <p className="alt-line">
-          By registering you agree to receive course-related emails from us.
+          By registering you agree to our{" "}
+          <Link href="/terms">Terms of Service</Link> and{" "}
+          <Link href="/privacy">Privacy Policy</Link>, and to receive
+          course-related emails from us.
         </p>
       </div>
     </div>
